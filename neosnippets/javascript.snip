@@ -1,71 +1,72 @@
-snippet :f
-options head
-  ${1:#:method_name}: function(${2:#:attribute}) {
-    ${0:TARGET}
-  }
-
 snippet function
 abbr    func
+alias   fu
 options word
-  function ${1:#:function_name}(${2:#:argument}) {
-    ${0:TARGET}
+  function ${1}(${2}) {
+    ${0}
   }
 
-snippet function2
-abbr    func2
-options head
-  function ${1:function_name}(${2:argument}) {
-    ${0:TARGET}
-  }
-
-snippet proto
-options head
-  ${1:#:class_name}.prototype.${2:#:method_name} = function(${3:#:first_argument}) {
-    ${0:TARGET}
-  };
-
-
-snippet f
+snippet arrow-function
+abbr    afunc
+alias   af
 options word
-  function(${1}) { ${0:TARGET} };
-
-snippet if
-options head
-  if (${1:true}) {
-    ${0:TARGET}
+  (${1}) => {
+    ${0}
   }
 
-snippet if-else
-abbr ife
+snippet class
+alias   cla
 options head
-  if (${1:#:condition}) {
-    ${2:TARGET}
-  } else {
-    ${3}
+  class ${1} extends ${2} {
+    constructor(props) {
+      super(props)
+    }
+    ${0}
   }
+
+snippet import
+alias   imp
+options head
+  import ${1} from '${0}'
+
+snippet const
+alias   co
+options head
+  const ${0}
+
+snippet let
+alias   le
+options head
+  let ${0}
+
+snippet ?
+options word
+  ? ${1} : ${0}
+
+snippet prototype
+alias   pro
+options head
+  prototype
 
 snippet for
-options head
-  for (var ${1:i} = 0; $1 < ${2:#:Things}.length; ++$1) {
+alias   fo
+options word
+  for (let i = 0; i < ${1}; ++i) {
     ${0:TARGET}
   }
 
 snippet forin
+alias   foi
 options head
-  for (var ${1:i} in ${2:#:Things}) {
-    ${0:TARGET}
-  }
-
-snippet while
-options head
-  while (${1:true}) {
+  for (let k; in ${1}) {
     ${0:TARGET}
   }
 
 snippet switch
+alias   swi
 options head
-  switch (${1:#:var}) {
-    case ${2:#:val}:
+  switch (${1}) {
+    case ${2}:
       ${0:TARGET}
       break;
   }
@@ -73,77 +74,158 @@ options head
 snippet try
 options head
   try {
-    ${1:TARGET}
-  } catch (${2:e}) {
-    ${3}
-  }
-
-snippet try_finally
-options head
-  try {
-    ${1:TARGET}
-  } catch (${2:e}) {
+    ${1}
+  } catch (${2}) {
     ${3}
   } finally {
-    ${4}
+    ${0}
   }
 
 
-snippet key-value
-abbr :,
+#Global Object Methods
+snippet console.log
+alias   con
 options word
-  ${1:#:value_name}: ${0:#:value},
+  console.log(${0})
 
-#snippet key
-#options word
-#  ${1:#:key}: "${2:#:value}"}${3:, }
+snippet alert
+alias   al
+options word
+  alert(${0})
 
-snippet setTimeout-function
+snippet setTimeout
+alias   set
+options word
+  setTimeout(${0})
+
+# DOM method
+snippet addEventListener
+alias   ade
+options word
+  addEventListener(${1}, ${0})
+
+snippet removeEventListener
+alias   rme
+options word
+  removeEventListener(${1}, ${0})
+
+snippet querySelector
+alias   qs
+options word
+  querySelector(${0})
+
+snippet querySelectorAll
+alias   qsa
+options word
+  querySelectorAll(${0})
+
+snippet getElementById
+alias   geti
+options word
+  getElementById(${0})
+
+snippet getElementsByTagName
+alias   gett
+options word
+  getElementsByTagName(${0})
+
+# DOM event
+snippet preventDefault
+alias   pre
+options word
+  preventDefault(${0:e})
+
+snippet stopPropagation
+alias   stop
+options word
+  stopPropagation(${0:e})
+
+# array prototype method
+snippet map
+options word
+  map(${0})
+
+snippet filter
+options word
+  filter(${0})
+
+snippet find
+options word
+  map(${0})
+
+snippet forEach
+alias   foe
+options word
+  forEach(${0})
+
+snippet reduce
+options word
+  reduce(${0})
+
+# react
+snippet componentWillMount
+alias   wilm
+options word
+  componentWillMount() {
+    ${0}
+  }
+
+snippet componentDidMount
+alias   didm
+options word
+  componentWillMount() {
+    ${0}
+  }
+
+snippet componentWillReceiveProps
+alias   wilr
+options word
+  componentWillReceiveProps(nextProps) {
+    ${0}
+  }
+
+snippet shouldComponentUpdate
+alias   shoup
+options word
+  shouldComponentUpdate(nextProps, nextState) {
+    return ${0}
+  }
+
+snippet componentWillUpdate
+alias   wilup
+options word
+  componentWillUpdate() {
+    ${0}
+  }
+
+snippet componentDidUpdate
+alias   wilum
+options word
+  componentDidUpdate(prevProps, prevState) {
+    ${0}
+  }
+
+snippet componentWillUnmount
+alias   wilm
+options word
+  componentWillUnmount() {
+    ${0}
+  }
+
+# jsx
+snippet className
+alias   cl
+options word
+  className=${0}
+
+snippet < />
+alias   <
+options word
+  <${0} />
+
+# etc
+snippet use
 options head
-  setTimeout(function() { ${0} }, ${1:10});
+  'use strict';
 
-snippet debugger
-alias db
-options head
-  debugger;
-
-snippet console-log
-alias cl
-options head
-  console.log(${0:TARGET});
-
-snippet console-trace
-alias ct
-options head
-  console.trace();
-
-snippet console-error
-alias ce
-options head
-  console.error(${0:TARGET});
-
-snippet console-warn
-alias cw
-options head
-  console.warn(${0:TARGET});
-
-snippet console-info
-alias ci
-options head
-  console.info(${0:TARGET});
-
-snippet iife
-options head
-  (function(${1}) {
-    'use strict';
-    ${0:TARGET}
-  })(${2});
-
-snippet js
-options head
-  JSON.stringify(${1:TARGET}, ${2:null}, ${3:2});
-
-snippet jsc
-options head
-  console.log(JSON.stringify(${1:TARGET}, ${2:null}, ${3:2}));
-
+# event name
