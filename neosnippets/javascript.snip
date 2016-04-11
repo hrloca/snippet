@@ -26,14 +26,19 @@ options head
   import ${1} from '${0}'
 
 snippet const
-alias   co
+alias   con
 options head
   const ${0}
 
 snippet let
-alias   le
+alias   let
 options head
   let ${0}
+
+snippet var
+alias   var
+options head
+  var ${0}
 
 snippet ?
 options word
@@ -80,7 +85,7 @@ options head
 
 #Global Object Methods
 snippet console.log
-alias   con
+alias   log
 options word
   console.log(${0})
 
