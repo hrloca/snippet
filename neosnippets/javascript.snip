@@ -10,28 +10,22 @@ alias   af
 options word
   (${1}) => {${0}}
 
-snippet method
-alias   mt
-options word
-  ${1}(${2}) {${0}}
-
 snippet class
-alias   cla
+alias   cl
 options head
   class ${1} extends ${2} {
-    constructor(props) {
-      super(props)
+    constructor() {
+      super()
     }
-    ${0}
   }
 
 snippet import
-alias   imp
+alias   im
 options head
   import ${1} from '${0}'
 
 snippet const
-alias   con
+alias   co
 options head
   const ${0}
 
@@ -61,36 +55,42 @@ options word
   }
 
 snippet for
-alias   fo
 options word
   for (let i = 0; i < ${1}; ++i) {
+    ${0:TARGET}
+  }
+
+snippet forof
+alias   fo
+options word
+  for (let i of ${1}) {
     ${0:TARGET}
   }
 
 snippet forin
 alias   foi
 options head
-  for (let k; in ${1}) {
+  for (let k in ${1}) {
     ${0:TARGET}
   }
 
 snippet switch
 alias   swi
 options head
-  switch (${1}) {
-    case ${2}:
-      ${0:TARGET}
-      break;
+  switch () {
+    case: true {
+      break
+    }
+    default: {
+      break
+    }
   }
 
 snippet try
 options head
   try {
-    ${1}
-  } catch (${2}) {
-    ${3}
+  } catch () {
   } finally {
-    ${0}
   }
 
 
